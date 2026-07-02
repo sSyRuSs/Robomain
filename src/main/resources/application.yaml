@@ -2,9 +2,14 @@ spring:
   application:
     name: Robomain
 
+  config:
+    # Local dev overrides — file is git-ignored, not included in JAR.
+    # Create application-local.yaml in project root to override any value below.
+    import: optional:file:./application-local.yaml
+
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/cmms}
-    username: ${DB_USERNAME:cmms}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
