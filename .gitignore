@@ -1,0 +1,82 @@
+# ============================================================
+# Build Output
+# ============================================================
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Maven wrapper JAR (download on demand instead)
+.mvn/wrapper/maven-wrapper.jar
+
+# ============================================================
+# Generated Artifacts at Project Root (from JAR extraction)
+# ============================================================
+/META-INF/
+/org/
+
+# ============================================================
+# Sensitive Configuration
+# ============================================================
+# Do NOT commit local credential overrides or secret files
+.env
+.env.*
+!.env.example
+application-local.yaml
+application-local.properties
+application-secret.yaml
+application-secret.properties
+# Google service account credentials
+cred.json
+*-service-account*.json
+*-credentials*.json
+
+# ============================================================
+# Logs
+# ============================================================
+*.log
+logs/
+spring.log
+
+# ============================================================
+# IDE — IntelliJ IDEA
+# ============================================================
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# ============================================================
+# IDE — Eclipse / STS
+# ============================================================
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# ============================================================
+# IDE — NetBeans
+# ============================================================
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ============================================================
+# IDE — VS Code
+# ============================================================
+.vscode/
+
+# ============================================================
+# OS Generated
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db

@@ -1,0 +1,1 @@
+alter type EnumRole add value 'EXPERT';

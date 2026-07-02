@@ -1,0 +1,1 @@
+alter TABLE work_order drop column user_id CASCADE;

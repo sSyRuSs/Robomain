@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS bill(
+    id UUID PRIMARY KEY,
+    bill_total DECIMAL(10, 2),
+    task_id UUID, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (task_id) REFERENCES task(id) on DELETE CASCADE
+);
