@@ -39,12 +39,8 @@ public class CreateTaskCommandHandler {
 
         Task saved = taskRepository.save(task);
 
-        // Increment work order task counter when task is created
         if (command.getWorkOrderId() != null) {
-            workOrderRepository.findById(command.getWorkOrderId()).ifPresent(wo -> {
-                wo.incrementTaskTotal();
-                workOrderRepository.save(wo);
-            });
+            workOrderRepository.incrementTaskTotal(command.getWorkOrderId());
         }
 
         eventPublisher.publishEvent(

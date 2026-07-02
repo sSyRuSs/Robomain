@@ -1,5 +1,6 @@
 package com.example.Robomain.application.task.handler;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ public class UpdateTaskCommandHandler {
     private final ITaskRepository taskRepository;
     private final TaskDtoMapper dtoMapper;
 
+    @CacheEvict(value = "task", key = "#command.taskId")
     @Transactional
     public UUID handle(UpdateTaskCommand command) {
         var task = taskRepository.findById(command.getTaskId())

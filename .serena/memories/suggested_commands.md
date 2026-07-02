@@ -30,19 +30,19 @@ mvn clean package -DskipTests
 - Run JAR directly: `java -jar target\Robomain-0.0.1-SNAPSHOT.jar`
 
 ## Environment Variables (REQUIRED — no defaults for secrets)
-```powershell
-# Secrets — must set before running
-$env:DB_PASSWORD = "robomain"
-$env:JWT_SECRET = "dGhpcy1pcy1hLXZlcnktbG9uZy1zZWNyZXQta2V5LWZvci1yb2JvbWFpbi1jbW1zLWp3dC10b2tlbi0yMDI2"
+> Template for dev: `.env.example` → copy to `.env` (git-ignored), fill in values.
 
-# Optional (defaults exist)
-$env:DB_URL = "jdbc:postgresql://localhost:5432/cmms"   # default already correct
-$env:DB_USERNAME = "cmms"
-$env:MAIL_USERNAME = "..."    # Gmail address
-$env:MAIL_PASSWORD = "..."    # Gmail app password
+```powershell
+# Minimum required to start app
+$env:DB_PASSWORD = "..."       # PostgreSQL password
+$env:JWT_SECRET = "..."        # base64, min 256-bit; generate: openssl rand -base64 64
 ```
-> Template: copy `.env.example` → `.env` (ignored by git)
-> Generate new JWT_SECRET: `openssl rand -base64 64`
+All other vars have sensible localhost defaults (see `mem:tech_stack` for full table).
+
+## Git Setup Notes
+- `.gitignore` excludes: `target/`, `/META-INF/`, `/org/`, `.env*` (except `.env.example`), `*.log`, `*.iml`, `.idea/`, `.vscode/`, OS junk
+- `.env.example` is tracked — update it when adding new env vars
+- `.env` is NOT tracked
 
 ## External Services (must be running locally for dev)
 - PostgreSQL on `localhost:5432`, DB `cmms`, user `cmms`, pass `robomain`

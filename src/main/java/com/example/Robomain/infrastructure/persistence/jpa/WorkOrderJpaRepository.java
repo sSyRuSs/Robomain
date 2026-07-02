@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -42,4 +43,8 @@ public interface WorkOrderJpaRepository extends JpaRepository<WorkOrderJpaEntity
             @Param("priority") EnumPriority priority,
             @Param("maintenanceId") UUID maintenanceId,
             @Param("assetId") UUID assetId);
+
+    @Modifying
+    @Query("UPDATE WorkOrderJpaEntity w SET w.taskTotal = w.taskTotal + 1 WHERE w.id = :id")
+    void incrementTaskTotal(@Param("id") UUID id);
 }

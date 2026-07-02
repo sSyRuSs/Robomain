@@ -19,7 +19,7 @@ import lombok.Setter;
 
 /**
  * Base JPA entity for infrastructure persistence layer ONLY.
- * 
+ *
  * Why this exists separately from domain models:
  * - Domain models must be pure Java (no JPA/Spring annotations)
  * - Clean Architecture: infrastructure depends on domain, not vice versa
@@ -45,3 +45,4 @@ public abstract class BaseJpaEntity implements Serializable {
     @Column(name = "updated_at")
     protected Date updatedAt;
 }
+

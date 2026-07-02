@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.Robomain.domain.shared.enums.EnumPriority;
 import com.example.Robomain.domain.shared.enums.EnumStatus;
@@ -47,4 +48,12 @@ public class WorkOrderRepositoryImpl implements IWorkOrderRepository {
     }
 
     @Override public void deleteById(UUID id) { jpaRepository.deleteById(id); }
+
+    @Override
+    @Transactional
+    public void incrementTaskTotal(UUID workOrderId) {
+        if (workOrderId != null) {
+            jpaRepository.incrementTaskTotal(workOrderId);
+        }
+    }
 }

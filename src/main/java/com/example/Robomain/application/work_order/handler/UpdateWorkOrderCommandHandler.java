@@ -1,5 +1,6 @@
 package com.example.Robomain.application.work_order.handler;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ public class UpdateWorkOrderCommandHandler {
     private final IWorkOrderRepository workOrderRepository;
     private final WorkOrderDtoMapper dtoMapper;
 
+    @CacheEvict(value = "work_order", key = "#command.workOrderId")
     @Transactional
     public UUID handle(UpdateWorkOrderCommand command) {
         var workOrder = workOrderRepository.findById(command.getWorkOrderId())

@@ -56,7 +56,14 @@ public class UserRepositoryImpl implements IUserRepository {
     @Override
     public User save(User user) {
         var entity = mapper.toJpa(user);
-        if (user.getId() != null) entity.setId(user.getId());
+        // Set ID only for updates — new entities have no createdAt yet.
+        // User.create() pre-assigns UUID.randomUUID(), but for new rows we must
+        // NOT copy that ID: Spring Data JPA sees a non-null ID as "existing" and
+        // calls merge() instead of persist(), causing StaleObjectStateException.
+        // For updates the domain User was loaded from DB and has createdAt set.
+        if (user.getCreatedAt() != null && user.getId() != null) {
+            entity.setId(user.getId());
+        }
         return mapper.toDomain(jpaRepository.save(entity));
     }
 

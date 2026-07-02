@@ -1,5 +1,6 @@
 package com.example.Robomain.application.task.handler;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ public class GetTaskByIdQueryHandler {
     private final ITaskRepository taskRepository;
     private final TaskDtoMapper dtoMapper;
 
+    @Cacheable(value = "task", key = "#query.taskId")
     @Transactional(readOnly = true)
     public TaskDto handle(GetTaskByIdQuery query) {
         return taskRepository.findById(query.getTaskId())

@@ -1,5 +1,6 @@
 package com.example.Robomain.application.work_order.handler;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ public class GetWorkOrderByIdQueryHandler {
     private final IWorkOrderRepository workOrderRepository;
     private final WorkOrderDtoMapper dtoMapper;
 
+    @Cacheable(value = "work_order", key = "#query.workOrderId")
     @Transactional(readOnly = true)
     public WorkOrderDto handle(GetWorkOrderByIdQuery query) {
         return workOrderRepository.findById(query.getWorkOrderId())

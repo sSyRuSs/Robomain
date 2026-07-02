@@ -16,4 +16,5 @@ public interface IWorkOrderRepository {
                UUID maintenanceId, UUID assetId);
     WorkOrder save(WorkOrder workOrder);
     void deleteById(UUID id);
+    void incrementTaskTotal(UUID workOrderId);
 }

@@ -40,8 +40,22 @@
 - `show-sql: false`
 
 ## Security
-- JWT: secret from env `JWT_SECRET` (base64 default present for dev), access 24h, refresh 7d
+- JWT: secret from env `JWT_SECRET` (**no fallback default** — must be set), access `${JWT_EXPIRATION_MS:86400000}`, refresh `${JWT_REFRESH_EXPIRATION_MS:604800000}`
 - Rate limiting: `RateLimitService` in `infrastructure/security/`
 
 ## Config
-`src/main/resources/application.yaml` — sensitive values via env vars: `JWT_SECRET`, `MAIL_USERNAME`, `MAIL_PASSWORD`
+`src/main/resources/application.yaml` — all secrets via env vars, **no hardcoded values**.
+
+| Env Var | Required | Default |
+|---|---|---|
+| `DB_PASSWORD` | **yes** | none |
+| `JWT_SECRET` | **yes** | none |
+| `MAIL_PASSWORD` | **yes** (mail features) | none |
+| `MAIL_USERNAME` | **yes** (mail features) | none |
+| `DB_URL` | no | `jdbc:postgresql://localhost:5432/cmms` |
+| `DB_USERNAME` | no | `cmms` |
+| `REDIS_HOST` | no | `localhost` |
+| `REDIS_PORT` | no | `6379` |
+| `SERVER_PORT` | no | `8080` |
+
+Dev setup: copy `.env.example` → `.env` (git-ignored), fill in secrets.

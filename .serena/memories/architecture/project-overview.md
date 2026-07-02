@@ -7,7 +7,7 @@
 - **Spring WebSocket** (real-time chat/notifications)
 - **Spring Events** (domain events)
 - **Flyway** (DB migrations, V1..V108)
-- **SpringDoc OpenAPI 2.2.0** (Swagger UI)
+- **SpringDoc OpenAPI 3.0.0** (Swagger UI — Spring Boot 4.x compatible)
 - **Lombok** (boilerplate reduction)
 - **Spring Actuator** (health/metrics)
 
